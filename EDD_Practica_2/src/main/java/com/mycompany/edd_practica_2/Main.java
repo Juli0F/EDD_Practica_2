@@ -7,7 +7,8 @@ package com.mycompany.edd_practica_2;
 
 import com.mycompany.edd_practica_2.arbol.Arbol;
 import com.mycompany.edd_practica_2.listas.ListaDoble;
-import com.mycompany.edd_practica_2.matriz_dispersa.Matriz;
+import com.mycompany.edd_practica_2.listas.LstCircular;
+import com.mycompany.edd_practica_2.matriz_dispersa.Capa;
 import com.mycompany.edd_practica_2.usuario.Usuario;
 import java.util.Random;
 
@@ -20,19 +21,46 @@ public class Main {
     public static void main(String[] args) {
 
         //pruebaListaDoble();
-        pruebaMatrizDispersa();
+      //  pruebaMatrizDispersa();
+      pruebaListaCircular();
+        
+       // Arbol<Matriz> capas = new Arbol<>();
+        
+        
+    }
+    public static void pruebaListaCircular(){
+        LstCircular<Usuario> lstDoble = new LstCircular<>();
+        
+        String usr  = "Julio - ";
+        boolean insert = false;
+        for (int i = 0; i < 10; i++) {
+            Usuario usuario = new Usuario();
+            usuario.setUsuario(usr + i);
+            
+                lstDoble.insertar(usuario);    
+            
+        
+        }
+        
+        lstDoble.mostrar();
         
     }
 
     public static void pruebaMatrizDispersa() {
-        Matriz<Usuario> dispersa = new Matriz<Usuario>();
+        Capa<Usuario> dispersa = new Capa<Usuario>(1);
         String usr = "Julio - ";
 
+        boolean insert = false;
         for (int i = 0; i < 10; i++) {
             Usuario usuario = new Usuario();
             usuario.setUsuario(usr + i);
-            dispersa.insertar(1, 2,usuario);
-
+            if (insert) {
+                dispersa.insertar(i, i+1,usuario);    
+            }else{
+                dispersa.insertar(i+1, i,usuario);    
+            }
+            
+            insert = !insert;
         
         }
         

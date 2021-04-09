@@ -9,18 +9,28 @@ package com.mycompany.edd_practica_2.matriz_dispersa;
  *
  * @author Temporal
  */
-public class Matriz<T> {
-    
+public class Capa<T> {
+    private int id;
     private NodoM<T> root;
     private int filas;
     private int columnas;
     private int nodos;
 
-    public Matriz() {
+    public Capa(int id) {
         
         root = new NodoM<T>(0,0);
                 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     public NodoM<T> crearNodo(int posX, int posY, T value){
         return new NodoM<T>(posX, posY, value);
     }
@@ -271,9 +281,46 @@ public class Matriz<T> {
         NodoM<T> temp = root;
         System.out.println("nodos: "+ nodos);
        
-        while (temp.getAbajo() != null) {
+        while (temp != null) {
             
+             NodoM<T> temp2 = temp.getAbajo();
+             
+            while (temp2.getDerecha() != null) {
+                
+                System.out.println(temp2.toString());
+                temp2 = temp2.getDerecha();
+                
+            }
+            temp = temp.getAbajo();
             
         }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Capa<?> other = (Capa<?>) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
+

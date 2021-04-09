@@ -5,6 +5,8 @@
  */
 package com.mycompany.edd_practica_2.usuario;
 
+import com.mycompany.edd_practica_2.Imagen;
+import com.mycompany.edd_practica_2.listas.ListaDoble;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,7 @@ import java.util.Objects;
 public class Usuario {
     
     private String usuario;
+    private ListaDoble<Imagen> imgs;
 
     public String getUsuario() {
         return usuario;

@@ -100,20 +100,23 @@ public class NodoM <T>{
     public String toString() {
         String cadena = "";
         
-        if (arriba != null) {
+        if (arriba != null && arriba.getPosY()  != 0) {
             cadena = "Arriba : ["+arriba.getPosX()+","+arriba.getPosY()+"], Value "+arriba.getValue();
         }
-        if (abajo != null) {
+        if (abajo != null ) {
             cadena += "Abajo : ["+abajo.getPosX()+","+abajo.getPosY()+"], Value "+abajo.getValue();
         }
         if (derecha != null) {
             cadena += "derecha : ["+derecha.getPosX()+","+derecha.getPosY()+"], Value "+derecha.getValue();
         }
-        if (izquierda != null) {
+        if (izquierda != null && arriba.getPosX()  != 0) {
             cadena += "izquierda : ["+izquierda.getPosX()+","+izquierda.getPosY()+"], Value "+izquierda.getValue();
         }
-        
-        return "Actual{" + "posX=" + posX + ", posY=" + posY + ", value=" + value.toString() +", "+ cadena+ '}';
+        String x = "";
+        if (this != null ) {
+            x = "posX=" + posX+ ", posY=" + posY;
+        }
+        return "Actual{" + x  + ", value=" + value.toString() +", "+ cadena+ '}';
     }
 
     
