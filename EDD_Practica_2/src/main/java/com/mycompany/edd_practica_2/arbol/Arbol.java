@@ -20,6 +20,15 @@ public class Arbol<T> {
     public Arbol() {
         this.root = null;
     }
+
+    public Nodo<T> getRoot() {
+        return root;
+    }
+
+    public void setRoot(Nodo<T> root) {
+        this.root = root;
+    }
+    
     
     public Nodo<T> buscar(int id, T valor, Nodo<T> nodo){
         
@@ -119,10 +128,11 @@ public class Arbol<T> {
         return aux;
     }
     
-    public Nodo<T> insertarAVL(Nodo<T> nuevo , Nodo<T> sub){
+    private Nodo<T> insertarAVL(Nodo<T> nuevo , Nodo<T> sub){
         Nodo<T> padre = sub;
         if (nuevo.getId() < sub.getId()) {
             if (sub.getIzquierdo() == null) {
+                
                  sub.setIzquierdo(nuevo); 
             }else{
                 sub.setIzquierdo(insertarAVL(nuevo , sub.getIzquierdo() ));
@@ -222,7 +232,7 @@ public class Arbol<T> {
             postOrden(nodo.getIzquierdo());
             preOrden(nodo.getDerecho());
             
-            System.out.println(nodo.getId() + "  ,   ");
+            System.out.print(nodo.getId() + "  ,   ");
             
         }
     }
