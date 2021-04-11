@@ -5,6 +5,9 @@
  */
 package com.mycompany.edd_practica_2.listas;
 
+import guru.nidi.graphviz.engine.Graphviz;
+import guru.nidi.graphviz.engine.GraphvizLoader;
+
 /**
  *
  * @author Temporal
@@ -126,6 +129,28 @@ public class ListaDoble<T> {
             temp = temp.getSiguiente();
             
         }
+    }
+    public void recorrerLstGraph(){
+        Nodo<T> temp = primero;
+        //Graphviz gv = new Graphviz(temp);
+        
+        
+       String cadena = "digraph Figura{\n\t";
+       
+       while(temp != null){
+         
+            cadena += temp.getId() ;;
+            if (temp.getSiguiente() != null) {
+               cadena +=  " -> "+ temp.getSiguiente().getId()+";\n\t";
+               cadena += temp.getSiguiente().getId() + " -> " + temp.getId()+";\n\t";
+           }
+            temp = temp.getSiguiente();
+            
+        }
+       cadena += "\n}";
+        System.out.println(cadena);
+
+        
     }
 
     public void actualizar(Nodo<T> old, Nodo<T> nEW) {

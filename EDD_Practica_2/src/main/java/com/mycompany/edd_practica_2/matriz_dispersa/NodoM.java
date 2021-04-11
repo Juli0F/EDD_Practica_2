@@ -119,6 +119,37 @@ public class NodoM <T>{
         return "Actual{" + x  + ", value=" + value.toString() +", "+ cadena+ '}';
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + this.posX;
+        hash = 59 * hash + this.posY;
+        return hash;
+    }
+
+  
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final NodoM<?> other = (NodoM<?>) obj;
+        if (this.posX != other.posX) {
+            return false;
+        }
+        if (this.posY != other.posY) {
+            return false;
+        }
+        return true;
+    }
+    
+
     
     
     

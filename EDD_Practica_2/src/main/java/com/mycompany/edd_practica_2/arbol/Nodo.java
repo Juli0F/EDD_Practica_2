@@ -5,6 +5,9 @@
  */
 package com.mycompany.edd_practica_2.arbol;
 
+import com.mycompany.edd_practica_2.CapaLoad;
+import java.util.List;
+
 /**
  *
  * @author Temporal
@@ -15,6 +18,7 @@ public class Nodo<T> {
     private int factEq;
     private T  valor;
     
+    
     private Nodo<T> izquierdo;
     private Nodo<T> derecho;
     
@@ -23,6 +27,7 @@ public class Nodo<T> {
         this.id = id;
         this.valor = valor;
         this.factEq = 0;
+        
 
     }
 
@@ -66,6 +71,31 @@ public class Nodo<T> {
 
     public void setDerecho(Nodo<T> derecho) {
         this.derecho = derecho;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Nodo<?> other = (Nodo<?>) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
     
 

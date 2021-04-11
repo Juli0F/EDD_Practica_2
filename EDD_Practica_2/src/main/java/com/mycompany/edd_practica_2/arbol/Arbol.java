@@ -5,6 +5,8 @@
  */
 package com.mycompany.edd_practica_2.arbol;
 
+import com.mycompany.edd_practica_2.io.WriteFile;
+
 /**
  *
  * @author Temporal
@@ -12,11 +14,16 @@ package com.mycompany.edd_practica_2.arbol;
 public class Arbol<T> {
     
    private Nodo<T>  root;
+   private String graph;
 
     public Arbol(Nodo<T> root) {
         this.root = root;
+        this.graph =  "";
     }
 
+    private void resetCadena(){
+        graph ="digraph Figura{\n\t";
+    }
     public Arbol() {
         this.root = null;
     }
@@ -29,17 +36,17 @@ public class Arbol<T> {
         this.root = root;
     }
     
-    
-    public Nodo<T> buscar(int id, T valor, Nodo<T> nodo){
+    //elimine el parametro T valor
+    public Nodo<T> buscar(int id, Nodo<T> nodo){
         
         if (root == null) {
             return null;
         }else if (nodo.getId() == id){
             return nodo;
         }else if (nodo.getId() < id) {
-            return buscar(id,valor,nodo.getDerecho());
+            return buscar(id,nodo.getDerecho());
         }else {
-            return buscar(id,valor,nodo.getIzquierdo());
+            return buscar(id,nodo.getIzquierdo());
         }
     }
     /**
@@ -131,13 +138,16 @@ public class Arbol<T> {
     private Nodo<T> insertarAVL(Nodo<T> nuevo , Nodo<T> sub){
         Nodo<T> padre = sub;
         if (nuevo.getId() < sub.getId()) {
+            
             if (sub.getIzquierdo() == null) {
-                
-                 sub.setIzquierdo(nuevo); 
+                 
+                sub.setIzquierdo(nuevo); 
+                 
             }else{
-                sub.setIzquierdo(insertarAVL(nuevo , sub.getIzquierdo() ));
                 
-                if(getFacEquilibrio(sub.getIzquierdo()) - getFacEquilibrio(sub.getDerecho()) == 2) {
+                sub.setIzquierdo(insertarAVL(nuevo , sub.getIzquierdo() ));
+                int factorEquilibrio = getFacEquilibrio(sub.getIzquierdo()) - getFacEquilibrio(sub.getDerecho());
+                if( factorEquilibrio> 1  || factorEquilibrio < -1) {
                     
                     if(nuevo.getId() < sub.getIzquierdo().getId()){
                         
@@ -209,13 +219,25 @@ public class Arbol<T> {
     
     public void inOrden (Nodo<T> nodo){
         if (nodo != null) {
+            
+            if (nodo.getIzquierdo() != null) {
+                graph += nodo.getId() +" -> "+ nodo.getIzquierdo().getId()+";\n\t";
+            }
+            
+            
             inOrden(nodo.getIzquierdo());
-            System.out.println(nodo.getId() + "  ,   ");
+            
+            
+            
+            if (nodo.getDerecho()!= null) {
+                graph += nodo.getId() +" -> "+ nodo.getDerecho().getId()+";\n\t";
+            }
+            
             inOrden(nodo.getDerecho());
             
         }
     }
-    
+   
     public void preOrden(Nodo<T> nodo){
         
         if (nodo != null) {
@@ -235,5 +257,90 @@ public class Arbol<T> {
             System.out.print(nodo.getId() + "  ,   ");
             
         }
+    }
+    
+     
+    private void graphInOrden (Nodo<T> nodo){
+        if (nodo != null) {
+            
+            
+            
+            graphInOrden(nodo.getIzquierdo());
+            
+            if (nodo.getIzquierdo() != null) {
+                graph += nodo.getId() +" -> "+ nodo.getIzquierdo().getId()+";\n\t";
+            }
+            
+            if (nodo.getDerecho()!= null) {
+                graph += nodo.getId() +" -> "+ nodo.getDerecho().getId()+";\n\t";
+            }
+            
+            graphInOrden(nodo.getDerecho());
+            
+        }
+    }
+    public void graphInOrden(){
+        
+        resetCadena();
+        graphInOrden(root);
+        graph += "}\n";
+        
+        WriteFile wf = new WriteFile();
+        wf.writeFile("arbol-inorden.dot", graph);
+        wf.dibujar("arbol-inorden.dot", "arbol-inorden.png");
+        System.out.println(graph);
+        
+        
+    }
+    
+     private void graphPreOrden(Nodo<T> nodo){
+        
+        if (nodo != null) {
+            
+            
+            
+            if (nodo.getIzquierdo() != null) {
+                graph += nodo.getId() +" -> "+ nodo.getIzquierdo().getId()+";\n\t";
+            }
+            if (nodo.getDerecho()!= null) {
+                graph += nodo.getId() +" -> "+ nodo.getDerecho().getId()+";\n\t";
+            }
+            
+            graphPreOrden(nodo.getIzquierdo());
+            graphPreOrden(nodo.getDerecho());
+            
+        }
+    }
+      public void graphPreOrden(){
+        
+        resetCadena();
+        graphPreOrden(root);
+        graph += "}\n";
+        System.out.println(graph);
+    }
+    private void graphPostOrden(Nodo<T> nodo){
+        
+        if (nodo != null) {
+            if (nodo.getIzquierdo() != null) {
+                graph += nodo.getId() +" -> "+ nodo.getIzquierdo().getId()+";\n\t";
+            }
+            if (nodo.getDerecho()!= null) {
+                graph += nodo.getId() +" -> "+ nodo.getDerecho().getId()+";\n\t";
+            }
+            graphPostOrden(nodo.getIzquierdo());
+            graphPostOrden(nodo.getDerecho());
+             
+      
+             
+        }
+    }
+      
+    public void graphPostOrden(){
+        
+        resetCadena();
+        graphPostOrden(root);
+        
+        graph += "}\n";
+        System.out.println(graph);
     }
 }

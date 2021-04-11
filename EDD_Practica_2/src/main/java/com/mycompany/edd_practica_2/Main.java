@@ -6,6 +6,7 @@
 package com.mycompany.edd_practica_2;
 
 import com.mycompany.edd_practica_2.arbol.Arbol;
+import com.mycompany.edd_practica_2.io.WriteFile;
 import com.mycompany.edd_practica_2.listas.ListaDoble;
 import com.mycompany.edd_practica_2.listas.LstCircular;
 import com.mycompany.edd_practica_2.matriz_dispersa.Capa;
@@ -20,10 +21,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //pruebaListaDoble();
-      //  pruebaMatrizDispersa();
-      pruebaListaCircular();
-        
+      //  pruebaListaDoble();
+       pruebaMatrizDispersa();
+    //  pruebaListaCircular();
+      //  pruebaArbol();
        // Arbol<Matriz> capas = new Arbol<>();
         
         
@@ -31,7 +32,7 @@ public class Main {
     public static void pruebaListaCircular(){
         LstCircular<Usuario> lstDoble = new LstCircular<>();
         
-        String usr  = "Julio - ";
+        String usr  = "# ";
         boolean insert = false;
         for (int i = 0; i < 10; i++) {
             Usuario usuario = new Usuario();
@@ -42,29 +43,47 @@ public class Main {
         
         }
         
-        lstDoble.mostrar();
+        //lstDoble.mostrar();
+        System.out.println("graph");
+        //lstDoble.recorrerLstGraph();
+        lstDoble.recorrerLstGraph();
         
+    }
+    public static String generarColor(){
+        String[] letters = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+	String color = "#";
+	for (int i = 0; i < 6; i++ ) {
+	    color += letters[(int) Math.round(Math.random() * 15)];
+	}
+        return color;
     }
 
     public static void pruebaMatrizDispersa() {
-        Capa<Usuario> dispersa = new Capa<Usuario>(1);
+        Capa<String> dispersa = new Capa<String>(1);
         String usr = "Julio - ";
 
-        boolean insert = false;
+        
+        
         for (int i = 0; i < 10; i++) {
             Usuario usuario = new Usuario();
             usuario.setUsuario(usr + i);
-            if (insert) {
-                dispersa.insertar(i, i+1,usuario);    
-            }else{
-                dispersa.insertar(i+1, i,usuario);    
-            }
             
-            insert = !insert;
+                dispersa.insertar(i+1, i+1,generarColor());    
+            
+            
         
         }
+       
+       
+        dispersa.insertar(1,10,"1-10");
+        dispersa.insertar(10,6,"10-6");
         
-        dispersa.imprimir();
+        
+        String cadena = dispersa.mostrarCadena();
+        WriteFile wf = new WriteFile();
+        
+        wf.writeFile("matriz.dot", cadena);
+        dispersa.dibujar("matriz.dot", "matriz.png");
        // System.out.println(dispersa.toString());
 
     }
@@ -82,9 +101,10 @@ public class Main {
         }
 
         lstUsuario.imprimir();
+        lstUsuario.recorrerLstGraph();
     }
 
-    public void pruebaArbol() {
+    public static void pruebaArbol() {
         Arbol arbol = new Arbol(null);
 //        
 //        arbol.insertar(3, "nodo prueba");
@@ -101,29 +121,39 @@ public class Main {
 
         }
 
-        System.out.println("\nPreOrder");
-        for (int i = 0; i < 10; i++) {
-            System.out.print("____");
-
-        }
-        System.out.println("");
-        arbol.preOrden(arbol.getRoot());
-
-        System.out.println("\nEn orden");
-        for (int i = 0; i < 10; i++) {
-            System.out.print("____");
-
-        }
-        System.out.println("");
-        arbol.inOrden(arbol.getRoot());
-
-        System.out.println("\nPostOrder");
-        for (int i = 0; i < 10; i++) {
-            System.out.print("____");
-
-        }
-        System.out.println("");
-        arbol.postOrden(arbol.getRoot());
+//        System.out.println("\nPreOrder");
+//        for (int i = 0; i < 10; i++) {
+//            System.out.print("____");
+//
+//        }
+//        System.out.println("");
+//        arbol.preOrden(arbol.getRoot());
+//
+//        System.out.println("\nEn orden");
+//        for (int i = 0; i < 10; i++) {
+//            System.out.print("____");
+//
+//        }
+//        System.out.println("");
+//        arbol.inOrden(arbol.getRoot());
+//
+//        System.out.println("\nPostOrder");
+//        for (int i = 0; i < 10; i++) {
+//            System.out.print("____");
+//
+//        }
+//        System.out.println("");
+//        arbol.postOrden(arbol.getRoot());
+//        
+        
+        System.out.println("In orden");
+        arbol.graphInOrden();
+        
+        System.out.println("pre Or");
+        arbol.graphPreOrden();
+        
+        System.out.println("Post");
+        arbol.graphPostOrden();
 
     }
 }
