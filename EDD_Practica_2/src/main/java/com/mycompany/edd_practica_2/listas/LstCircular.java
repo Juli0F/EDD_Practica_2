@@ -69,7 +69,7 @@ public class LstCircular<T> {
 
     }
 
-    public void recorrerLstGraph() {
+    public String recorrerLstGraph() {
 
         Nodo<T> temp = new Nodo<>();
         temp = primero;
@@ -87,12 +87,14 @@ public class LstCircular<T> {
             if (temp.getId() == primero.getId()) {
                 cadena += "\n}";
                 System.out.println(cadena);
-                return;
+                return cadena+"\n}";
             }
         }
 
         cadena += "\n}";
         System.out.println(cadena);
+        return cadena;
+        
 
     }
 
@@ -129,6 +131,7 @@ public class LstCircular<T> {
 
         }
 
+        System.out.println("No encontrado");
         return null;
 
     }

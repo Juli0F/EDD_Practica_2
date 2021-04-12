@@ -9,13 +9,15 @@ package com.mycompany.edd_practica_2.parser_img;
 public class sym {
   /* terminals */
   public static final int COLOR = 7;
-  public static final int BRACE_RIGHT = 3;
-  public static final int error = 1;
-  public static final int NUMBER = 5;
-  public static final int SEMI = 6;
   public static final int COLON = 4;
+  public static final int NUMBER = 5;
   public static final int BRACE_LEFT = 2;
+  public static final int SEMI = 6;
   public static final int EOF = 0;
+  public static final int BRACE_RIGHT = 3;
+  public static final int DOT = 9;
+  public static final int error = 1;
+  public static final int IDENTIFIER = 8;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -24,7 +26,9 @@ public class sym {
   "COLON",
   "NUMBER",
   "SEMI",
-  "COLOR"
+  "COLOR",
+  "IDENTIFIER",
+  "DOT"
   };
 }
 

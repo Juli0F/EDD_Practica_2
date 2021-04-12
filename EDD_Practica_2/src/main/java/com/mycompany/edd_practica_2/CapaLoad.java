@@ -23,7 +23,8 @@ public class CapaLoad {
         this.fila = fila;
         this.columna = columna;
         this.color = color;
-//        ImgLoad m = new ImgLoad();
+        ImgLoad m = new ImgLoad();
+        //m.setIdImagen(fila);
 //        m.getCapas().add(id)
     }
     

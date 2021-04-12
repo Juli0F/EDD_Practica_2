@@ -116,7 +116,10 @@ public class NodoM <T>{
         if (this != null ) {
             x = "posX=" + posX+ ", posY=" + posY;
         }
-        return "Actual{" + x  + ", value=" + value.toString() +", "+ cadena+ '}';
+        if (value != null) {
+            x += ", Value = "+value.toString();
+        }
+        return "Actual{" + x  +", "+ cadena+ '}';
     }
 
     @Override

@@ -17,6 +17,21 @@ public class Usuario {
     
     private String usuario;
     private ListaDoble<Imagen> imgs;
+    private ListaDoble<Integer> imgsInt;
+
+    public Usuario() {
+        imgs =new ListaDoble<>();
+        imgsInt =new ListaDoble<>();
+    }
+
+    public ListaDoble<Integer> getImgsInt() {
+        return imgsInt;
+    }
+
+    public void setImgsInt(ListaDoble<Integer> imgsInt) {
+        this.imgsInt = imgsInt;
+    }
+    
 
     public String getUsuario() {
         return usuario;
@@ -25,6 +40,15 @@ public class Usuario {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+    public ListaDoble<Imagen> getImgs() {
+        return imgs;
+    }
+
+    public void setImgs(ListaDoble<Imagen> imgs) {
+        this.imgs = imgs;
+    }
+    
 
     @Override
     public String toString() {

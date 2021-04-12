@@ -200,6 +200,7 @@ class CUP$Parser_Usuario$actions {
 							UsrLoad usrLoad = new UsrLoad();
 							usrLoad.setId((n));
 							usrLoad.getLst().addAll(desc);
+							lst.add(usrLoad);
 							RESULT = lst;
 
 						

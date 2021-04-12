@@ -34,8 +34,9 @@ public class Read {
 
                 System.out.println(linea);
 
-                linea = br.readLine();
                 fileStr += linea;
+                linea = br.readLine();
+                
             }
 
             if (path.contains(".cap")) {

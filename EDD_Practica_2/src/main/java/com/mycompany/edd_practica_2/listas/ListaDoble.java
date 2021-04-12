@@ -5,6 +5,7 @@
  */
 package com.mycompany.edd_practica_2.listas;
 
+import com.mycompany.edd_practica_2.matriz_dispersa.Capa;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.engine.GraphvizLoader;
 
@@ -32,8 +33,15 @@ public class ListaDoble<T> {
         Nodo<T> nuevo = new Nodo<>(value, null, null, 0);
 
         if (primero == null) {
+            System.out.println("Primero insertado");
             this.primero = nuevo;
-            primero.setId(1);
+            if (value instanceof Capa) {
+                Capa<String> capa = (Capa<String>) value;
+                primero.setId(capa.getId());
+            }else{
+                primero.setId(1);    
+            }
+            
             //   this.ultimo = nuevo;
         } else {
             insertar(nuevo);
@@ -58,7 +66,15 @@ public class ListaDoble<T> {
             temp.setSiguiente(nodo);
             temp.getSiguiente().setAnterior(temp);
             
-            temp.getSiguiente().setId(contTemp);
+            if (nodo.getValue() instanceof Capa) {
+                Capa<String> capa = (Capa<String>) nodo.getValue();
+                temp.getSiguiente().setId(capa.getId());
+            }else{
+                temp.getSiguiente().setId(contTemp);    
+            }
+            
+            
+            System.out.println("Nodo Insertado en la lista "+temp.getSiguiente().getValue());
         }
 
     }

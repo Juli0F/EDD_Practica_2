@@ -32,6 +32,7 @@ public class Capa<T> {
         this.subCadenaA = "";
         this.internos = new ArrayList<>();
         this.grupos = new ArrayList<>();
+        this.id = id;
 
     }
 

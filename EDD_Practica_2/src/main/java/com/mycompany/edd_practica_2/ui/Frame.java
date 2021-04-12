@@ -5,7 +5,13 @@
  */
 package com.mycompany.edd_practica_2.ui;
 
+import com.mycompany.edd_practica_2.Imagen;
+import com.mycompany.edd_practica_2.io.WriteFile;
+import com.mycompany.edd_practica_2.listas.LstCircular;
+import com.mycompany.edd_practica_2.matriz_dispersa.Capa;
+import com.mycompany.edd_practica_2.readf_file.Interprete;
 import com.mycompany.edd_practica_2.readf_file.Read;
+import com.mycompany.edd_practica_2.usuario.Usuario;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import prueba.Arbol;
 
 /**
  *
@@ -37,7 +44,7 @@ public class Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        paneRoot = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -47,6 +54,14 @@ public class Frame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,14 +94,24 @@ public class Frame extends javax.swing.JFrame {
         );
 
         jButton2.setText("Imagenes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Usuario");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout paneRootLayout = new javax.swing.GroupLayout(paneRoot);
+        paneRoot.setLayout(paneRootLayout);
+        paneRootLayout.setHorizontalGroup(
+            paneRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneRootLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -96,11 +121,11 @@ public class Frame extends javax.swing.JFrame {
                 .addContainerGap(344, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        paneRootLayout.setVerticalGroup(
+            paneRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneRootLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(paneRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -115,6 +140,62 @@ public class Frame extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Grafico");
+
+        jMenuItem1.setText("Generar Imagen");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setText("Arbol Usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenu4.setText("Arbol Capas");
+
+        jMenuItem5.setText("preorden");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
+        jMenuItem3.setText("inorden");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem3);
+
+        jMenuItem6.setText("post");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
+        jMenu3.add(jMenu4);
+
+        jMenuItem4.setText("Lista de Imagenes");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,14 +204,14 @@ public class Frame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(paneRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(paneRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -154,8 +235,6 @@ public class Frame extends javax.swing.JFrame {
         String path = file.getAbsolutePath();
         System.out.println("paht");
 
-        
-
         Read read = new Read();
         System.out.println("leer");
         read.leerTexto(path);
@@ -163,6 +242,88 @@ public class Frame extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JFileChooser jfChooser = new JFileChooser();
+
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.im", "im");
+        jfChooser.setFileFilter(filtro);
+        System.out.println("Filtro---------------->");
+        jfChooser.showOpenDialog(null);
+
+        jfChooser.setVisible(true);
+
+        System.out.println("visible");
+        File file = jfChooser.getSelectedFile();
+        System.out.println("Seleccion");
+        String path = file.getAbsolutePath();
+        System.out.println("paht");
+
+        Read read = new Read();
+        System.out.println("leer");
+        read.leerTexto(path);
+        read.leerTexto(path, jTextArea1);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JFileChooser jfChooser = new JFileChooser();
+
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.usr", "usr");
+        jfChooser.setFileFilter(filtro);
+        System.out.println("Filtro---------------->");
+        jfChooser.showOpenDialog(null);
+
+        jfChooser.setVisible(true);
+
+        System.out.println("visible");
+        File file = jfChooser.getSelectedFile();
+        System.out.println("Seleccion");
+        String path = file.getAbsolutePath();
+        System.out.println("paht");
+
+        Read read = new Read();
+        System.out.println("leer");
+        read.leerTexto(path);
+        read.leerTexto(path, jTextArea1);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        arbolUsr.graphInOrden("Arbol-Usr.dot", "Arbol-usr-inorden.png");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        String cadena = lstCircular.recorrerLstGraph();
+        WriteFile wf = new WriteFile();
+        wf.writeFile("lst-circular-img.dot", cadena);
+        wf.dibujar("lst-circular-img.dot", "lst-circular.png");
+        
+        Visor_Test v= new Visor_Test();
+       
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+        //Interprete.capas.inOrden(Interprete.capas.getRoot());
+        System.out.println("\n\n\n=========================Capas========================= " + capas.getRoot() == null);
+        capas.graphInOrden("Arbol-capas-in.dot", "Arbol-capas-inorden.png");
+ Visor_Test v= new Visor_Test();
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        capas.graphPre("Arbol-capas-pre.dot", "Arbol-capas-pre.png");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        capas.graphPre("Arbol-capas-post.dot", "Arbol-capas-post.png");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,6 +359,9 @@ public class Frame extends javax.swing.JFrame {
             }
         });
     }
+    public static Arbol<Capa<String>> capas = new Arbol<>();
+    public static LstCircular<Imagen> lstCircular = new LstCircular<>();
+    public static Arbol<Usuario> arbolUsr  = new Arbol<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -205,10 +369,18 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JPanel paneRoot;
     // End of variables declaration//GEN-END:variables
 }

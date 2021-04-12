@@ -6,10 +6,10 @@
 package com.mycompany.edd_practica_2.parser_img;
 
 import java_cup.runtime.*;
-import com.mycompany.edd_practica_2.CapaLoad;
+import com.mycompany.edd_practica_2.UsrLoad;
+import com.mycompany.edd_practica_2.ImgLoad;
 import java.util.List;
 import java.util.ArrayList;
-import com.mycompany.edd_practica_2.ImgLoad;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -35,9 +35,9 @@ public class Parser_ImgLoad extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\007\000\002\003\003\000\002\002\004\000\002\005" +
+    "\000\010\000\002\003\003\000\002\002\004\000\002\005" +
     "\007\000\002\005\002\000\002\004\004\000\002\004\002" +
-    "\000\002\002\004" });
+    "\000\002\002\003\000\002\002\004" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -49,9 +49,9 @@ public class Parser_ImgLoad extends java_cup.runtime.lr_parser {
     "\001\007\007\001\002\000\004\002\006\001\002\000\004" +
     "\002\000\001\002\000\004\004\010\001\002\000\006\005" +
     "\ufffc\007\ufffc\001\002\000\006\005\012\007\013\001\002" +
-    "\000\006\002\uffff\007\uffff\001\002\000\004\006\015\001" +
-    "\002\000\006\005\ufffd\007\ufffd\001\002\000\006\005\ufffb" +
-    "\007\ufffb\001\002" });
+    "\000\006\002\uffff\007\uffff\001\002\000\010\005\ufffb\006" +
+    "\015\007\ufffb\001\002\000\006\005\ufffd\007\ufffd\001\002" +
+    "\000\006\005\ufffa\007\ufffa\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -197,9 +197,12 @@ class CUP$Parser_ImgLoad$actions {
 		int descright = ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.elementAt(CUP$Parser_ImgLoad$top-1)).right;
 		List<Integer> desc = (List<Integer>)((java_cup.runtime.Symbol) CUP$Parser_ImgLoad$stack.elementAt(CUP$Parser_ImgLoad$top-1)).value;
 		
-							ImgLoad iLoad = new ImgLoad();
-							iLoad.setIdImagen(Integer.parseInt(n));
-							iLoad.getCapas().addAll(desc);
+							ImgLoad img = new ImgLoad();
+							img.setIdImagen(Integer.parseInt(n));
+							System.out.println("size desc "+desc.size());
+							img.getCapas().addAll(desc);
+							System.out.println("size lst img  "+lst.size());
+							lst.add(img);
 							RESULT = lst;
 
 						
@@ -211,7 +214,8 @@ class CUP$Parser_ImgLoad$actions {
           case 3: // instruccion ::= 
             {
               List<ImgLoad> RESULT =null;
-		RESULT = new ArrayList<>();
+		System.out.println("Nueva instruccion");
+						RESULT = new ArrayList<>();
               CUP$Parser_ImgLoad$result = parser.getSymbolFactory().newSymbol("instruccion",3, ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()), RESULT);
             }
           return CUP$Parser_ImgLoad$result;
@@ -227,7 +231,10 @@ class CUP$Parser_ImgLoad$actions {
 		int dright = ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$Parser_ImgLoad$stack.peek()).value;
 		
+							System.out.println("size lst descripcion"+lst.size());
+							System.out.println("dato=== "+d);
 							lst.add(Integer.parseInt(d));
+							System.out.println("size lst dec  "+lst.size());
 							RESULT = lst;
 						
               CUP$Parser_ImgLoad$result = parser.getSymbolFactory().newSymbol("descripcion",2, ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.elementAt(CUP$Parser_ImgLoad$top-1)), ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()), RESULT);
@@ -239,13 +246,26 @@ class CUP$Parser_ImgLoad$actions {
             {
               List<Integer> RESULT =null;
 		
+						System.out.println("===Inicia===");
 						RESULT = new ArrayList<>();
               CUP$Parser_ImgLoad$result = parser.getSymbolFactory().newSymbol("descripcion",2, ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()), RESULT);
             }
           return CUP$Parser_ImgLoad$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // datos ::= NUMBER COLON 
+          case 6: // datos ::= NUMBER 
+            {
+              String RESULT =null;
+		int nleft = ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()).left;
+		int nright = ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()).right;
+		String n = (String)((java_cup.runtime.Symbol) CUP$Parser_ImgLoad$stack.peek()).value;
+		RESULT = n;
+              CUP$Parser_ImgLoad$result = parser.getSymbolFactory().newSymbol("datos",0, ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.peek()), RESULT);
+            }
+          return CUP$Parser_ImgLoad$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // datos ::= NUMBER COLON 
             {
               String RESULT =null;
 		int nleft = ((java_cup.runtime.Symbol)CUP$Parser_ImgLoad$stack.elementAt(CUP$Parser_ImgLoad$top-1)).left;

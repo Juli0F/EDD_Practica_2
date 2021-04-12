@@ -5,6 +5,7 @@
  */
 package com.mycompany.edd_practica_2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class ImgLoad {
     private List<Integer> capas;
 
     public ImgLoad() {
+        capas= new ArrayList<>();
     }
 
     public int getIdImagen() {

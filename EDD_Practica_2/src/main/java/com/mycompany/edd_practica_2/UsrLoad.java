@@ -5,6 +5,7 @@
  */
 package com.mycompany.edd_practica_2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class UsrLoad {
     }
 
     public UsrLoad() {
+        lst = new ArrayList<>();
     }
 
     public String getId() {

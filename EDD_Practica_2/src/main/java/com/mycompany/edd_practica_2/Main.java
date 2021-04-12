@@ -24,7 +24,7 @@ public class Main {
       //  pruebaListaDoble();
        pruebaMatrizDispersa();
     //  pruebaListaCircular();
-      //  pruebaArbol();
+        pruebaArbol();
        // Arbol<Matriz> capas = new Arbol<>();
         
         
@@ -121,33 +121,9 @@ public class Main {
 
         }
 
-//        System.out.println("\nPreOrder");
-//        for (int i = 0; i < 10; i++) {
-//            System.out.print("____");
-//
-//        }
-//        System.out.println("");
-//        arbol.preOrden(arbol.getRoot());
-//
-//        System.out.println("\nEn orden");
-//        for (int i = 0; i < 10; i++) {
-//            System.out.print("____");
-//
-//        }
-//        System.out.println("");
-//        arbol.inOrden(arbol.getRoot());
-//
-//        System.out.println("\nPostOrder");
-//        for (int i = 0; i < 10; i++) {
-//            System.out.print("____");
-//
-//        }
-//        System.out.println("");
-//        arbol.postOrden(arbol.getRoot());
-//        
         
         System.out.println("In orden");
-        arbol.graphInOrden();
+        arbol.graphInOrden("Arbol-prueba.dot", "In-Orden.png");
         
         System.out.println("pre Or");
         arbol.graphPreOrden();

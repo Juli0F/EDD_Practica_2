@@ -5,6 +5,7 @@
  */
 package com.mycompany.edd_practica_2;
 
+import com.mycompany.edd_practica_2.arbol.Nodo;
 import com.mycompany.edd_practica_2.listas.ListaDoble;
 import com.mycompany.edd_practica_2.matriz_dispersa.Capa;
 
@@ -19,7 +20,7 @@ public class Imagen {
 
     public Imagen(int id) {
         this.id  = id;
-        this.capas = null;
+        this.capas = new ListaDoble<>();
     }
 
     public int getId() {
@@ -35,6 +36,9 @@ public class Imagen {
         return capas;
     }
 
+    public void insertarEnListaDoble(Capa<String> nodo){
+        capas.insertar(nodo);
+    }
     public void setCapas(ListaDoble<Capa<String>> capas) {
         this.capas = capas;
     }

@@ -6,6 +6,7 @@
 package com.mycompany.edd_practica_2.arbol;
 
 import com.mycompany.edd_practica_2.io.WriteFile;
+import java.util.List;
 
 /**
  *
@@ -15,6 +16,7 @@ public class Arbol<T> {
     
    private Nodo<T>  root;
    private String graph;
+   private List<Nodo<T>> lstNodo;
 
     public Arbol(Nodo<T> root) {
         this.root = root;
@@ -48,6 +50,11 @@ public class Arbol<T> {
         }else {
             return buscar(id,nodo.getIzquierdo());
         }
+    }
+    
+     public Nodo<T> buscar(T id, Nodo<T> nodo){
+         
+        return null;
     }
     /**
      * obtener el factor de equilibrio del subarbol
@@ -218,26 +225,28 @@ public class Arbol<T> {
     /***********************   Recorridos *************************************/
     
     public void inOrden (Nodo<T> nodo){
+        
         if (nodo != null) {
-            
             if (nodo.getIzquierdo() != null) {
                 graph += nodo.getId() +" -> "+ nodo.getIzquierdo().getId()+";\n\t";
             }
-            
-            
             inOrden(nodo.getIzquierdo());
-            
-            
-            
             if (nodo.getDerecho()!= null) {
                 graph += nodo.getId() +" -> "+ nodo.getDerecho().getId()+";\n\t";
             }
-            
             inOrden(nodo.getDerecho());
-            
         }
+        
     }
-   
+   public Nodo<T> mostrar(Nodo<T> nodo){
+       
+       if (nodo != null) {
+           
+           return mostrar(nodo);
+       }
+       
+       return null;
+   }
     public void preOrden(Nodo<T> nodo){
         
         if (nodo != null) {
@@ -279,16 +288,17 @@ public class Arbol<T> {
             
         }
     }
-    public void graphInOrden(){
+    public void graphInOrden(String nombreDot, String nombrePng){
         
         resetCadena();
+        System.out.println(root.toString());
         graphInOrden(root);
         graph += "}\n";
         
         WriteFile wf = new WriteFile();
-        wf.writeFile("arbol-inorden.dot", graph);
-        wf.dibujar("arbol-inorden.dot", "arbol-inorden.png");
-        System.out.println(graph);
+        wf.writeFile(nombreDot, graph);
+        wf.dibujar(nombreDot, nombrePng);
+        
         
         
     }
@@ -296,8 +306,6 @@ public class Arbol<T> {
      private void graphPreOrden(Nodo<T> nodo){
         
         if (nodo != null) {
-            
-            
             
             if (nodo.getIzquierdo() != null) {
                 graph += nodo.getId() +" -> "+ nodo.getIzquierdo().getId()+";\n\t";

@@ -10,31 +10,30 @@ import com.mycompany.edd_practica_2.Imagen;
 import com.mycompany.edd_practica_2.ImgLoad;
 import com.mycompany.edd_practica_2.Lexer_Capas;
 import com.mycompany.edd_practica_2.UsrLoad;
-import com.mycompany.edd_practica_2.arbol.Arbol;
-import com.mycompany.edd_practica_2.arbol.Nodo;
-import com.mycompany.edd_practica_2.listas.LstCircular;
 import com.mycompany.edd_practica_2.matriz_dispersa.Capa;
 import com.mycompany.edd_practica_2.parser;
 import com.mycompany.edd_practica_2.parser_img.Parser_ImgLoad;
 import com.mycompany.edd_practica_2.parser_usr.Lexer_Usuario;
 import com.mycompany.edd_practica_2.parser_usr.Parser_Usuario;
-import java.io.FileReader;
-import java.io.Reader;
+import com.mycompany.edd_practica_2.ui.Frame;
+import com.mycompany.edd_practica_2.usuario.Usuario;
 import java.io.StringReader;
 import java.util.List;
 import java_cup.runtime.Symbol;
+import prueba.Arbol;
+import prueba.Nodo;
 
 /**
  *
  * @author Temporal
  */
 public class Interprete {
-    private Arbol<Capa<String>> capas;
-    private LstCircular<Imagen> lstCircular ;
+   
 
     public Interprete() {
-        capas = new Arbol<Capa<String>>();
-        lstCircular = new LstCircular<>();
+//        capas = new Arbol<Capa<String>>();
+//        arbolUsr = new Arbol<Usuario>();
+//        lstCircular = new LstCircular<>();
     }
     
 
@@ -53,15 +52,13 @@ public class Interprete {
 
             if (c.getId() != id) {
                  capa = new Capa<>(c.getId());
-                 capas.insertar(c.getId(), capa);
+                 //capas.insertar(c.getId(), capa);
+                 Frame.capas.put(capa);
+                id = c.getId();     
             }
                 capa.insertar(c.getFila(), c.getColumna(), c.getColor());
-           
-
-            id = c.getId();
 
         }
-        capas.graphInOrden();
 
     }
 
@@ -73,22 +70,26 @@ public class Interprete {
              
              
              crear.forEach(x->{
-                 Imagen im = new Imagen(x.getIdImagen());
                  
-                 
+                Imagen im = new Imagen(x.getIdImagen());                 
                  x.getCapas().forEach(cp ->{
-                     Nodo<Capa<String>> nodo = capas.buscar(cp, capas.getRoot());
+                     Capa<String> cx = new Capa<>(cp);
+                        Nodo<Capa<String>> nodo = Frame.capas.find(cx,Frame.capas.getRoot());
+                        System.out.println("Nodo ==> "+ nodo.toString());
                      if (nodo != null) {
-                         im.getCapas().insertar(nodo.getValor());    
-                     }
-                     
+                         im.getCapas().insertar(nodo.getValue());    
+                    }
+//                     
                  });
                  
-                 lstCircular.insertar(im);
+                 Frame.lstCircular.insertar(im);
                      
                  
                  
              });
+             
+            
+             
              
     }
 
@@ -97,6 +98,28 @@ public class Interprete {
             Parser_Usuario parser = new Parser_Usuario(lexerUsr);
              Symbol s = parser.parse();
              List<UsrLoad> crear = (List<UsrLoad>) s.value;
+              
+             crear.forEach(x -> {
+                 Usuario usuario = new Usuario();
+                 usuario.setUsuario(x.getId());
+                 x.getLst().forEach( b -> {
+                     
+                     System.out.println("list "+b);
+                     com.mycompany.edd_practica_2.listas.Nodo<Imagen> node = Frame.lstCircular.buscar(new Imagen(b));
+                     usuario.getImgsInt().insertar(b);
+                     
+                     
+//                     
+//                     node.setSiguiente(null);
+//                     if (node != null) {
+//                         usuario.getImgs().insertar(node);
+//                         
+//                     }
+                 });
+                 
+                 Frame.arbolUsr.put( usuario);
+                 
+             });
             
     }
 }
