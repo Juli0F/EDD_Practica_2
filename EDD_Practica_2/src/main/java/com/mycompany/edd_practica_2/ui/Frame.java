@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import prueba.Arbol;
 
@@ -54,6 +56,9 @@ public class Frame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -138,6 +143,26 @@ public class Frame extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jMenuItem9.setText("Capas");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem9);
+
+        jMenuItem8.setText("Imagenes");
+        jMenu2.add(jMenuItem8);
+
+        jMenuItem7.setText("Usuarios");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Grafico");
@@ -290,11 +315,18 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        UsrPane usr = new UsrPane();
+        usr.setSize(paneRoot.getWidth(),paneRoot.getHeight());
+        usr.setVisible(true);
+        paneRoot.removeAll();
+        paneRoot.add(usr);
+        paneRoot.revalidate();
+        paneRoot.repaint();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         arbolUsr.graphInOrden("Arbol-Usr.dot", "Arbol-usr-inorden.png");
+        loadImage( "Arbol-usr-inorden.png");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -302,9 +334,9 @@ public class Frame extends javax.swing.JFrame {
         WriteFile wf = new WriteFile();
         wf.writeFile("lst-circular-img.dot", cadena);
         wf.dibujar("lst-circular-img.dot", "lst-circular.png");
-        
-        Visor_Test v= new Visor_Test();
-       
+
+        loadImage("lst-circular.png");
+
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -313,18 +345,52 @@ public class Frame extends javax.swing.JFrame {
         //Interprete.capas.inOrden(Interprete.capas.getRoot());
         System.out.println("\n\n\n=========================Capas========================= " + capas.getRoot() == null);
         capas.graphInOrden("Arbol-capas-in.dot", "Arbol-capas-inorden.png");
- Visor_Test v= new Visor_Test();
+        loadImage("Arbol-capas-inorden.png");
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+    public void loadImage(String path) {
+        File file = new File(path);
+        if (file.exists()) {
+            LoadImage imagen = new LoadImage(file.getAbsolutePath());
+            paneRoot.removeAll();
+            paneRoot.add(imagen);
+            paneRoot.repaint();
+        }else{
+            JOptionPane.showMessageDialog(null, "Error Al Cargar la Imagen","Informacion",JOptionPane.ERROR_MESSAGE);
+        }
 
+    }
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         capas.graphPre("Arbol-capas-pre.dot", "Arbol-capas-pre.png");
+        loadImage("Arbol-capas-pre.png");
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        capas.graphPre("Arbol-capas-post.dot", "Arbol-capas-post.png");
+        capas.graphPost("Arbol-capas-post.dot", "Arbol-capas-post.png");
+        loadImage("Arbol-capas-post.png");
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        UsuarioUI usrUI = new UsuarioUI();
+        usrUI.setVisible(true);
+        agregarPane(usrUI);
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    public void agregarPane(JPanel panel){
+        
+        paneRoot.removeAll();
+        panel.setVisible(true);
+        panel.setSize(paneRoot.getWidth(),paneRoot.getHeight());
+        paneRoot.add(panel);
+        paneRoot.repaint();
+        paneRoot.revalidate();
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -361,7 +427,7 @@ public class Frame extends javax.swing.JFrame {
     }
     public static Arbol<Capa<String>> capas = new Arbol<>();
     public static LstCircular<Imagen> lstCircular = new LstCircular<>();
-    public static Arbol<Usuario> arbolUsr  = new Arbol<>();
+    public static Arbol<Usuario> arbolUsr = new Arbol<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -378,6 +444,9 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

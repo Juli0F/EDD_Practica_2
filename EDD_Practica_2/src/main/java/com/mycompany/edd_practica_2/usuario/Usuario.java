@@ -24,6 +24,7 @@ public class Usuario {
         imgsInt =new ListaDoble<>();
     }
 
+    
     public ListaDoble<Integer> getImgsInt() {
         return imgsInt;
     }

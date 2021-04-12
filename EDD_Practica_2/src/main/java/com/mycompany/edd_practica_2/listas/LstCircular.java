@@ -114,15 +114,24 @@ public class LstCircular<T> {
 
     }
 
-    public Nodo<T> buscar(T value) {
+    public Nodo<T> find(T value) {
 
         Nodo<T> actual = new Nodo<>();
 
-        actual = ultimo;
+        actual = primero;
 
         boolean find = false;
+        if (ultimo != null && primero != null) {
+            
+            if (ultimo.getValue().hashCode() == value.hashCode()) {
+                return ultimo;
+            }
+            
+            if(primero.getValue().hashCode() == value.hashCode()) return primero;
+            
+        }
 
-        while (actual != null) {
+        while (actual != null && actual.getSiguiente() != primero ) {
 
             if (actual.getValue().hashCode() == value.hashCode()) {
                 return actual;

@@ -1,9 +1,0 @@
-digraph Figura{
-	cesar2 ->cesar1;
-	cesar2 ->cesar3;
-	cesar4 ->cesar2;
-	cesar4 ->juan123;
-	juan123 ->cesar5;
-	juan123 ->mario12;
-	
-}

@@ -105,7 +105,7 @@ public class Interprete {
                  x.getLst().forEach( b -> {
                      
                      System.out.println("list "+b);
-                     com.mycompany.edd_practica_2.listas.Nodo<Imagen> node = Frame.lstCircular.buscar(new Imagen(b));
+                  //   com.mycompany.edd_practica_2.listas.Nodo<Imagen> node = Frame.lstCircular.buscar((b));
                      usuario.getImgsInt().insertar(b);
                      
                      

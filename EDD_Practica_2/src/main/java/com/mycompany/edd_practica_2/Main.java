@@ -24,7 +24,7 @@ public class Main {
       //  pruebaListaDoble();
        pruebaMatrizDispersa();
     //  pruebaListaCircular();
-        pruebaArbol();
+     //   pruebaArbol();
        // Arbol<Matriz> capas = new Arbol<>();
         
         

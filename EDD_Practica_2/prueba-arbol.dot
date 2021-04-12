@@ -1,3 +1,0 @@
-digraph Figura{
-	Matriz{root=Actual{posX=0, posY=0, Abajo : [0,1], Value nullderecha : [1,0], Value null}, filas=4, columnas=0, nodos=12}Matriz{root=Actual{posX=0, posY=0, Abajo : [0,1], Value nullderecha : [1,0], Value null}, filas=4, columnas=0, nodos=4} -> prueba.Nodo@239415->571Matriz{root=Actual{posX=0, posY=0, Abajo : [0,1], Value nullderecha : [1,0], Value null}, filas=4, columnas=0, nodos=12}Matriz{root=Actual{posX=0, posY=0, Abajo : [0,1], Value nullderecha : [1,0], Value null}, filas=5, columnas=0, nodos=4} -> prueba.Nodo@23a417->573Matriz{root=Actual{posX=0, posY=0, Abajo : [0,1], Value nullderecha : [1,0], Value null}, filas=7, columnas=0, nodos=23}
-}
