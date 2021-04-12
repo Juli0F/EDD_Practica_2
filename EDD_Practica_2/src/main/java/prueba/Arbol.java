@@ -36,7 +36,7 @@ public class Arbol<T> {
         return x.size;
     }
 
-    public int height() {
+    public int alturaArbol() {
         return height(root);
     }
 
@@ -47,11 +47,11 @@ public class Arbol<T> {
         return x.height;
     }
 
-    public void put(T val) {
-        root = put(root, val);
+    public void insertar(T val) {
+        root = insertar(root, val);
     }
 
-    public Nodo<T> find(T val, Nodo<T> x) {
+    public Nodo<T> buscar(T val, Nodo<T> x) {
         if (x == null) {
             return null;
         }
@@ -60,13 +60,13 @@ public class Arbol<T> {
             System.out.println("encontrado");
             return x;
         } else if (val.hashCode() < x.value.hashCode()) {
-            return find(val, x.left);
+            return buscar(val, x.left);
         } else {
-            return find(val, x.right);
+            return buscar(val, x.right);
         }
     }
 
-    private Nodo<T> put(Nodo<T> x, T val) {
+    private Nodo<T> insertar(Nodo<T> x, T val) {
         System.out.println("Insertando valor");
         if (x == null) {
             return new Nodo(val, 0, 1);
@@ -74,10 +74,10 @@ public class Arbol<T> {
 
         if (val.hashCode() < x.value.hashCode()) {
 
-            x.left = put(x.left, val);
+            x.left = insertar(x.left, val);
 
         } else if (val.hashCode() > x.value.hashCode()) {
-            x.right = put(x.right, val);
+            x.right = insertar(x.right, val);
         } else {
             x.value = val;
             System.out.println("Insertando valor insertado");
@@ -85,18 +85,18 @@ public class Arbol<T> {
         }
         x.size = 1 + size(x.left) + size(x.right);
         x.height = 1 + Math.max(height(x.left), height(x.right));
-        return balance(x);
+        return equilibrioi(x);
     }
 
-    private Nodo<T> balance(Nodo<T> x) {
+    private Nodo<T> equilibrioi(Nodo<T> x) {
         if (balanceFactor(x) > 1) {
             if (balanceFactor(x.right) < 0) {
                 x.right = rotacionAlaDerecha(x.right);
             }
-            x = rotateLeft(x);
+            x = rotacionIzquierda(x);
         } else if (balanceFactor(x) < -1) {
             if (balanceFactor(x.left) > 0) {
-                x.left = rotateLeft(x.left);
+                x.left = rotacionIzquierda(x.left);
             }
             x = rotacionAlaDerecha(x);
         }
@@ -118,7 +118,7 @@ public class Arbol<T> {
         return y;
     }
 
-    private Nodo<T> rotateLeft(Nodo<T> x) {
+    private Nodo<T> rotacionIzquierda(Nodo<T> x) {
         Nodo<T> y = x.right;
         x.right = y.left;
         y.left = x;
@@ -130,14 +130,14 @@ public class Arbol<T> {
     }
 
     public void delete(T val) {
-        root = delete(root, val);
+        root = eliminar(root, val);
     }
 
-    private Nodo<T> delete(Nodo<T> x, T val) {
+    private Nodo<T> eliminar(Nodo<T> x, T val) {
         if (val.hashCode() < x.value.hashCode()) {
-            x.left = delete(x.left, val);
+            x.left = eliminar(x.left, val);
         } else if (val.hashCode() > x.value.hashCode()) {
-            x.right = delete(x.right, val);
+            x.right = eliminar(x.right, val);
         } else {
             if (x.left == null) {
                 return x.right;
@@ -152,7 +152,7 @@ public class Arbol<T> {
         }
         x.size = 1 + size(x.left) + size(x.right);
         x.height = 1 + Math.max(height(x.left), height(x.right));
-        return balance(x);
+        return equilibrioi(x);
     }
 
     private Nodo<T> deleteMin(Nodo<T> x) {
@@ -162,7 +162,7 @@ public class Arbol<T> {
         x.left = deleteMin(x.left);
         x.size = 1 + size(x.left) + size(x.right);
         x.height = 1 + Math.max(height(x.left), height(x.right));
-        return balance(x);
+        return equilibrioi(x);
     }
 
     private Nodo min(Nodo<T> x) {

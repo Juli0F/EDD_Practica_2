@@ -1,0 +1,111 @@
+digraph Sparce_Matrix {
+
+	node [shape=box]
+	Mt[ label = "0,0", width = 1.5, style = filled, fillcolor = firebrick1, group = 1 ];
+	e0[ shape = point, width = 0 ];
+	e1[ shape = point, width = 0 ];
+ 	U10444 [label ="0,1" pos = "5.3,3.5!" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];
+	U10445 [label = "0,2" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];
+	U10446 [label = "0,3" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];
+	U10447 [label = "0,4" width = 1.5 style = filled, fillcolor = bisque1, group = 1 ];
+	U10444 ->U10445;
+	U10445 ->U10446;
+	U10446 ->U10447;
+	
+	A10502 [label ="1,0" width = 1.5 style = filled, fillcolor = lightskyblue, group = 1  ];
+	A10561 [label ="2,0" width = 1.5 style = filled, fillcolor = lightskyblue, group = 2  ];
+	A10620 [label ="3,0" width = 1.5 style = filled, fillcolor = lightskyblue, group = 3  ];
+	A10679 [label ="4,0" width = 1.5 style = filled, fillcolor = lightskyblue, group = 4  ];
+	A10502 ->A10561;
+	A10561 ->A10620;
+	A10620 ->A10679;
+	Mt -> U10444;
+	Mt -> A10502;
+	{rank = same; Mt;A10502 ;A10561 ;A10620 ;A10679}
+	
+	i10503[label = "#28B463" width = 1.5, group = 1 ];
+	
+	i10503[label = "#28B463" width = 1.5, group = 1 ];
+	
+	i10503[label = "#28B463" width = 1.5, group = 1 ];
+	
+	i10503[label = "#28B463" width = 1.5, group = 1 ];
+	
+	U10444 -> i10503;
+	i10503 -> U10444;
+	i10503 -> A10502;
+	A10502 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	i10503 -> i10503;
+	
+	{ rank = same;  U10444; i10503; i10503; i10503; i10503;}
+	
+	i10563[label = "#28B463" width = 1.5, group = 2 ];
+	
+	i10563[label = "#28B463" width = 1.5, group = 2 ];
+	
+	U10445 -> i10563;
+	i10563 -> U10445;
+	i10563 -> A10561;
+	A10561 -> i10563;
+	i10563 -> i10563;
+	i10563 -> i10563;
+	i10563 -> i10563;
+	i10563 -> i10563;
+	
+	{ rank = same;  U10445; i10563; i10563;}
+	
+	i10623[label = "#28B463" width = 1.5, group = 3 ];
+	
+	i10623[label = "#28B463" width = 1.5, group = 3 ];
+	
+	U10446 -> i10623;
+	i10623 -> U10446;
+	i10623 -> A10620;
+	A10620 -> i10623;
+	i10623 -> i10623;
+	i10623 -> i10623;
+	i10623 -> i10623;
+	i10623 -> i10623;
+	
+	{ rank = same;  U10446; i10623; i10623;}
+	
+	i10683[label = "#28B463" width = 1.5, group = 4 ];
+	
+	i10683[label = "#28B463" width = 1.5, group = 4 ];
+	
+	i10683[label = "#28B463" width = 1.5, group = 4 ];
+	
+	i10683[label = "#28B463" width = 1.5, group = 4 ];
+	
+	U10447 -> i10683;
+	i10683 -> U10447;
+	i10683 -> A10679;
+	A10679 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	i10683 -> i10683;
+	
+	{ rank = same;  U10447; i10683; i10683; i10683; i10683;}
+	
+	
+}

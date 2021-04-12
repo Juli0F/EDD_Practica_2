@@ -134,7 +134,7 @@ public class UsrPane extends javax.swing.JPanel {
          String idUsr = (String) st;
          Usuario usuario = new Usuario();
          usuario.setUsuario(idUsr);
-         usuario = Frame.arbolUsr.find(usuario, Frame.arbolUsr.getRoot()).getValue();
+         usuario = Frame.arbolUsr.buscar(usuario, Frame.arbolUsr.getRoot()).getValue();
          
          Imagen i = new Imagen(usuario.getImgsInt().getPrimero().getValue());
           com.mycompany.edd_practica_2.listas.Nodo<Imagen> n = Frame.lstCircular.find(i);
@@ -148,13 +148,14 @@ public class UsrPane extends javax.swing.JPanel {
               loadImage(usuario.getUsuario()+".png");
         }
          
-         Frame.arbolUsr.find(usuario, Frame.arbolUsr.getRoot());
+         Frame.arbolUsr.buscar(usuario, Frame.arbolUsr.getRoot());
     }//GEN-LAST:event_jButton1ActionPerformed
 
        public void loadImage(String path) {
         File file = new File(path);
         if (file.exists()) {
             LoadImage imagen = new LoadImage(file.getAbsolutePath());
+            imagen.setSize(paneRoot.getWidth(), paneRoot.getWidth());
             paneRoot.removeAll();
             paneRoot.add(imagen);
             paneRoot.repaint();

@@ -5,6 +5,7 @@
  */
 package com.mycompany.edd_practica_2.matriz_dispersa;
 
+import com.mycompany.edd_practica_2.io.WriteFile;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -225,7 +226,7 @@ public class Capa<T> {
         if (nodo == root) {
 
             if (nodo.getDerecha() != null) {
-                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " + nodo.getDerecha().getPosX() + "  ];\n\t";
+                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " + (nodo.getDerecha().getPosX()+1) + "  ];\n\t";
                 subCadenaA = "A" + nodo.getDerecha().hashCode();
 
                 recorrerColumna(nodo.getDerecha());
@@ -233,7 +234,7 @@ public class Capa<T> {
 
         } else {
             if (nodo.getDerecha() != null) {
-                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " + nodo.getDerecha().getPosX() + "  ];\n\t";
+                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " +(nodo.getDerecha().getPosX()+1)+ "  ];\n\t";
                 subCadenaA += " ;A" + nodo.getDerecha().hashCode();
 
                 recorrerColumna(nodo.getDerecha());
@@ -282,9 +283,17 @@ public class Capa<T> {
         cadena += "\n\t";
 
         cadena += "\n}";
+        
+        
 
         System.out.println(cadena);
         return cadena;
+    }
+    public void graph(String nombreDot, String nombrePng){
+        mostrarCadena();
+        WriteFile wf = new WriteFile();
+        wf.writeFile(nombreDot, cadena);
+        wf.dibujar(nombreDot, nombrePng);
     }
 
     public void recorrerNodosDentro(NodoM<T> nodoFila) {
@@ -296,7 +305,7 @@ public class Capa<T> {
 
         while (temp.getDerecha() != null) {
 
-            cadena += "\n\ti" + temp.getDerecha().hashCode() + "[label = \"" + temp.getDerecha().getValue().toString() + "\" width = 1.5, group = " + temp.getDerecha().getPosX() + " ];\n\t";
+            cadena += "\n\ti" + temp.getDerecha().hashCode() + "[label = \"" + temp.getDerecha().getValue().toString() + "\" width = 1.5, group = " + (temp.getDerecha().getPosX()+1) + " ];\n\t";
 
             if (temp != nodoFila) {
                 //linkInternos += "i" + temp.hashCode() + " -> " + "i" + temp.getDerecha().hashCode() + ";\n\t";

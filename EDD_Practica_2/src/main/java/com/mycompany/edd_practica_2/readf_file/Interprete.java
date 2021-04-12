@@ -53,7 +53,7 @@ public class Interprete {
             if (c.getId() != id) {
                  capa = new Capa<>(c.getId());
                  //capas.insertar(c.getId(), capa);
-                 Frame.capas.put(capa);
+                 Frame.capas.insertar(capa);
                 id = c.getId();     
             }
                 capa.insertar(c.getFila(), c.getColumna(), c.getColor());
@@ -74,7 +74,7 @@ public class Interprete {
                 Imagen im = new Imagen(x.getIdImagen());                 
                  x.getCapas().forEach(cp ->{
                      Capa<String> cx = new Capa<>(cp);
-                        Nodo<Capa<String>> nodo = Frame.capas.find(cx,Frame.capas.getRoot());
+                        Nodo<Capa<String>> nodo = Frame.capas.buscar(cx,Frame.capas.getRoot());
                         System.out.println("Nodo ==> "+ nodo.toString());
                      if (nodo != null) {
                          im.getCapas().insertar(nodo.getValue());    
@@ -117,7 +117,7 @@ public class Interprete {
 //                     }
                  });
                  
-                 Frame.arbolUsr.put( usuario);
+                 Frame.arbolUsr.insertar( usuario);
                  
              });
             

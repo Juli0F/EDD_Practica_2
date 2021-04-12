@@ -178,7 +178,7 @@ public class UsuarioUI extends javax.swing.JPanel {
         usuario = new Usuario();
         usuario.setUsuario(txtBuscarUsuario.getText());
 
-        usuario = Frame.arbolUsr.find(usuario, Frame.arbolUsr.getRoot()).getValue();
+        usuario = Frame.arbolUsr.buscar(usuario, Frame.arbolUsr.getRoot()).getValue();
 
         
         if (usuario != null) {

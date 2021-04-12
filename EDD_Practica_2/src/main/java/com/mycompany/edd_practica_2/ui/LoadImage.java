@@ -19,7 +19,7 @@ public class LoadImage extends JPanel {
 
     private String path;
     public LoadImage(String path) {
-        this.setSize(400, 500);
+       // this.setSize(400, 500);
         this.path = path;
     }
 

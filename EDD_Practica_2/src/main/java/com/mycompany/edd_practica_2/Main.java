@@ -21,40 +21,40 @@ public class Main {
 
     public static void main(String[] args) {
 
-      //  pruebaListaDoble();
-       pruebaMatrizDispersa();
-    //  pruebaListaCircular();
-     //   pruebaArbol();
-       // Arbol<Matriz> capas = new Arbol<>();
-        
-        
+        //  pruebaListaDoble();
+        pruebaMatrizDispersa();
+        //  pruebaListaCircular();
+        //   pruebaArbol();
+        // Arbol<Matriz> capas = new Arbol<>();
+
     }
-    public static void pruebaListaCircular(){
+
+    public static void pruebaListaCircular() {
         LstCircular<Usuario> lstDoble = new LstCircular<>();
-        
-        String usr  = "# ";
+
+        String usr = "# ";
         boolean insert = false;
         for (int i = 0; i < 10; i++) {
             Usuario usuario = new Usuario();
             usuario.setUsuario(usr + i);
-            
-                lstDoble.insertar(usuario);    
-            
-        
+
+            lstDoble.insertar(usuario);
+
         }
-        
+
         //lstDoble.mostrar();
         System.out.println("graph");
         //lstDoble.recorrerLstGraph();
         lstDoble.recorrerLstGraph();
-        
+
     }
-    public static String generarColor(){
-        String[] letters = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
-	String color = "#";
-	for (int i = 0; i < 6; i++ ) {
-	    color += letters[(int) Math.round(Math.random() * 15)];
-	}
+
+    public static String generarColor() {
+        String[] letters = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+        String color = "#";
+        for (int i = 0; i < 6; i++) {
+            color += letters[(int) Math.round(Math.random() * 15)];
+        }
         return color;
     }
 
@@ -62,29 +62,37 @@ public class Main {
         Capa<String> dispersa = new Capa<String>(1);
         String usr = "Julio - ";
 
-        
-        
-        for (int i = 0; i < 10; i++) {
-            Usuario usuario = new Usuario();
-            usuario.setUsuario(usr + i);
-            
-                dispersa.insertar(i+1, i+1,generarColor());    
-            
-            
-        
-        }
-       
-       
-        dispersa.insertar(1,10,"1-10");
-        dispersa.insertar(10,6,"10-6");
-        
-        
+//        for (int i = 0; i < 10; i++) {
+//            Usuario usuario = new Usuario();
+//            usuario.setUsuario(usr + i);
+//            
+//                dispersa.insertar(i+1, i+1,generarColor());    
+//            
+//        }
+//       
+//       
+//        dispersa.insertar(1,10,"1-10");
+//        dispersa.insertar(10,6,"10-6");
+//        
+        dispersa.insertar(1, 1, "1,1");
+        dispersa.insertar(1, 2, "1,2");
+        dispersa.insertar(1, 3, "1,3");
+        dispersa.insertar(1, 4, "1,4");
+        dispersa.insertar(2, 1, "2,1");
+        dispersa.insertar(2, 4, "2,4");
+        dispersa.insertar(3, 1, "3,1");
+        dispersa.insertar(3, 4, "3,4");
+        dispersa.insertar(4, 1, "4,1");
+        dispersa.insertar(4, 2, "4,2");
+        dispersa.insertar(4, 3, "4,3");
+        dispersa.insertar(4, 4, "4,4");
+
         String cadena = dispersa.mostrarCadena();
         WriteFile wf = new WriteFile();
-        
+
         wf.writeFile("matriz.dot", cadena);
         dispersa.dibujar("matriz.dot", "matriz.png");
-       // System.out.println(dispersa.toString());
+        // System.out.println(dispersa.toString());
 
     }
 
@@ -121,13 +129,12 @@ public class Main {
 
         }
 
-        
         System.out.println("In orden");
         arbol.graphInOrden("Arbol-prueba.dot", "In-Orden.png");
-        
+
         System.out.println("pre Or");
         arbol.graphPreOrden();
-        
+
         System.out.println("Post");
         arbol.graphPostOrden();
 
