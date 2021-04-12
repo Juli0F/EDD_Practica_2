@@ -226,7 +226,7 @@ public class Capa<T> {
         if (nodo == root) {
 
             if (nodo.getDerecha() != null) {
-                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " + (nodo.getDerecha().getPosX()+1) + "  ];\n\t";
+                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " + (nodo.getDerecha().getPosX()) + "  ];\n\t";
                 subCadenaA = "A" + nodo.getDerecha().hashCode();
 
                 recorrerColumna(nodo.getDerecha());
@@ -234,7 +234,7 @@ public class Capa<T> {
 
         } else {
             if (nodo.getDerecha() != null) {
-                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " +(nodo.getDerecha().getPosX()+1)+ "  ];\n\t";
+                cadena += "A" + nodo.getDerecha().hashCode() + " [label =\"" + nodo.getDerecha().getPosX() + "," + nodo.getDerecha().getPosY() + "\" width = 1.5 style = filled, fillcolor = lightskyblue, group = " + nodo.getDerecha().getPosX() + "  ];\n\t";
                 subCadenaA += " ;A" + nodo.getDerecha().hashCode();
 
                 recorrerColumna(nodo.getDerecha());
@@ -305,7 +305,7 @@ public class Capa<T> {
 
         while (temp.getDerecha() != null) {
 
-            cadena += "\n\ti" + temp.getDerecha().hashCode() + "[label = \"" + temp.getDerecha().getValue().toString() + "\" width = 1.5, group = " + (temp.getDerecha().getPosX()+1) + " ];\n\t";
+            cadena += "\n\ti" + temp.getDerecha().hashCode() + "[label = \"" + temp.getDerecha().getValue().toString() + "\" width = 1.5, group = " + temp.getDerecha().getPosX() + " ];\n\t";
 
             if (temp != nodoFila) {
                 //linkInternos += "i" + temp.hashCode() + " -> " + "i" + temp.getDerecha().hashCode() + ";\n\t";
